@@ -3,9 +3,9 @@ LABEL maintainer "edberg1974 <edberg.s@gmail.com>"
 
 COPY ./lib/ /module
 WORKDIR /app
-COPY train/train.py .
+COPY train/train_new.py .
 ENV LIBPATH='/module'
 ENV MODELPATH='/model/'
 ENV DATAPAHT='/data/'
 ENTRYPOINT ["python3"]
-CMD ["train.py"]
+CMD ["train_new.py"]

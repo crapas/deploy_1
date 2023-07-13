@@ -6,8 +6,8 @@ ENV LIBPATH='/module'
 ENV MODELPATH='/model/'
 
 WORKDIR /app
-COPY infer/infer.py .
+COPY infer/infer_new.py .
 RUN pip3 install flask
 
 ENTRYPOINT ["python3"]
-CMD ["infer.py"]
+CMD ["infer_new.py"]
