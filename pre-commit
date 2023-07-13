@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# 변경된 파일 목록 가져오기
+changed_files=$(git diff --name-only --cached)
+
+# 테스트를 수행할 디렉토리 목록 설정
+test_dirs=("a" "b" "c")
+
+# 변경된 파일 중 테스트를 수행할 디렉토리에 속하는지 확인하고 테스트 수행
+for file in $changed_files; do
+  for dir in "${test_dirs[@]}"; do
+    if [[ $file == "$dir"* ]]; then
+      cd "$dir" || exit
+      python -m unittest test.py
+      cd ..
+      break
+    fi
+  done
+done
+
+# 스테이징 영역에 변경된 파일을 다시 추가
+git add $changed_files
+
